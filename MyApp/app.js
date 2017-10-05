@@ -14,6 +14,7 @@ import {
     ScrollView,
     Platform,
     ListView,
+    Image,
     TouchableHighlight,
     Dimensions
 } from 'react-native';
@@ -23,6 +24,10 @@ const  ds = new ListView.DataSource({
     rowHasChanged:(r1,r2) => r1 !== r2
 });
 
+//指示器样式
+const circleSize = 8;
+const circleMargin = 5;
+
 export default class App extends Component {
     //生命周期 constructor -> componentWillMount -> render -> componentDidMount -> componentWillUnmount
     //构造函数
@@ -30,6 +35,7 @@ export default class App extends Component {
         super(props);
         this.state = {
             currentPage: 0,
+            searchText: '',
             dataSource: ds.cloneWithRows([
                 '商品1',
                 '商品2',
@@ -41,7 +47,12 @@ export default class App extends Component {
                 '商品8',
                 '商品9',
                 '商品10',
-            ])
+            ]),
+            advertisements: [
+                {title:'广告1',backgroundColor:'gray',url:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507226069759&di=851adcf8a30dfe9e746776d11efd554b&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F14%2F87%2F22%2F40858PIC4AX_1024.jpg'},
+                {title:'广告2',backgroundColor:'yellow',url:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507226069759&di=851adcf8a30dfe9e746776d11efd554b&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F14%2F87%2F22%2F40858PIC4AX_1024.jpg'},
+                {title:'广告3',backgroundColor:'red',url:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507226069759&di=851adcf8a30dfe9e746776d11efd554b&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F14%2F87%2F22%2F40858PIC4AX_1024.jpg'},
+            ]
         };
     }
 
@@ -50,24 +61,36 @@ export default class App extends Component {
     }
 
     render() {
+        //指示器个数
+        const adCount = this.state.advertisements.length;
+        //指示器宽度
+        const indicatorWidth = circleSize * adCount +circleMargin * adCount * 2;
+        //指示器左边坐标
+        const indicatorLeft = (Dimensions.get('window').width - indicatorWidth) / 2;
+
         return (
             <View style={styles.container}>
                 <View style={styles.searchBar}>
-                    <TextInput style={styles.input} placeholder='搜索商品'></TextInput>
+                    <TextInput style={styles.input} placeholder='搜索商品' onChangeText={(text)=>this.changeText(text)}></TextInput>
                     <Button style={styles.button} title='搜索' onPress={this.click}></Button>
                 </View>
                 <View style={styles.advertisement}>
-                    <ScrollView ref='scrollView' horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true}>
-                        <Text style={{width:Dimensions.get('window').width,height:180,backgroundColor:'gray'}}>
-                            商品1
-                        </Text>
-                        <Text style={{width:Dimensions.get('window').width,height:180,backgroundColor:'red'}}>
-                            商品2
-                        </Text>
-                        <Text style={{width:Dimensions.get('window').width,height:180,backgroundColor:'yellow'}}>
-                            商品3
-                        </Text>
+                    <ScrollView ref='scrollView' horizontal={true} showsHorizontalScrollIndicator={false}
+                                pagingEnabled={true}>
+                        {this.state.advertisements.map((advertisement, index) => {
+                            return (
+                                <TouchableHighlight key={index} onPress={this.bannerClick}>
+                                    <Image style={styles.advertisement} source={{uri:advertisement.url}}></Image>
+                                </TouchableHighlight>
+                            )
+                        })}
                     </ScrollView>
+
+                    <View style={[styles.indicator,{left:indicatorLeft}]}>{this.state.advertisements.map((ad,index)=>{
+                        return (<View key={index} style={(index === this.state.currentPage) ? styles.circleSelected : styles.circle} />
+                        )})}
+                    </View>
+
                 </View>
                 <View style={styles.products}>
                     <ListView dataSource={this.state.dataSource} renderRow={this._renderRow} />
@@ -119,11 +142,21 @@ export default class App extends Component {
     }
 
     click() {
-        alert('搜索')
+        alert('搜索1')
+    }
+
+    bannerClick(data) {
+        alert(data.title)
     }
 
     listViewClick() {
         alert('点击列表')
+    }
+
+    changeText(text) {
+        if (text === '1234'){
+            alert(text)
+        }
     }
 }
 
@@ -140,14 +173,36 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
         borderColor: 'gray',
-        borderWidth: 2
+        borderWidth: 2,
+        borderRadius: 5
     },
     button: {
-      flex: 1
+        flex: 1
     },
+    //轮播图
     advertisement: {
         height: 180,
-
+        width: Dimensions.get('window').width
+    },
+    //指示器
+    indicator: {
+        position: 'absolute',
+        top: 160,
+        flexDirection: 'row',
+    },
+    circle: {
+        width: circleSize,
+        height: circleSize,
+        borderRadius: circleSize / 2,
+        backgroundColor: 'gray',
+        marginHorizontal: circleMargin
+    },
+    circleSelected: {
+        width: circleSize,
+        height: circleSize,
+        borderRadius: circleSize / 2,
+        backgroundColor: 'white',
+        marginHorizontal: circleMargin
     },
     products: {
         flex: 1,
