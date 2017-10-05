@@ -16,6 +16,7 @@ import {
     ListView,
     Image,
     TouchableHighlight,
+    RefreshControl,
     Dimensions
 } from 'react-native';
 
@@ -34,6 +35,7 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isRefreshing: false,
             currentPage: 0,
             searchText: '',
             dataSource: ds.cloneWithRows([
@@ -92,7 +94,10 @@ export default class App extends Component {
 
                 </View>
                 <View style={styles.products}>
-                    <ListView dataSource={this.state.dataSource} renderRow={this._renderRow} renderSeparator={this._renderSeperator}/>
+                    <ListView dataSource={this.state.dataSource}
+                              renderRow={this._renderRow}
+                              renderSeparator={this._renderSeperator}
+                              refreshControl={this._renderRefreshControl()}/>
                 </View>
 
             </View>
@@ -150,6 +155,33 @@ export default class App extends Component {
         );
     }
 
+    _renderRefreshControl = () => {
+        return (
+            <RefreshControl refreshing={this.state.isRefreshing}
+                            onRefresh={this._onRefresh}
+                            tintColor={'#FF0000'}
+                            title={'正在刷新数据，请稍后...'}
+                            titleColor={'#0000FF'}></RefreshControl>
+        );
+    }
+    _onRefresh = () => {
+        this.setState({
+            isRefreshing:true
+        })
+        
+        setTimeout(() => {
+            const products = Array.from(new Array(10)).map((value,index)=> ({
+                image: require('./images/pig.png'),
+                title: '新商品'+index,
+                subTitle:'新商品描述'+index
+            }));
+            this.setState({
+                isRefreshing: false,
+                dataSource:ds.cloneWithRows(products)
+            })
+        }, 2000)
+    }
+
     click() {
         alert('搜索1')
     }
@@ -167,6 +199,7 @@ export default class App extends Component {
             alert(text)
         }
     }
+
 }
 
 const styles = StyleSheet.create({
