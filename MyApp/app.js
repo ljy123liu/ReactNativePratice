@@ -37,16 +37,15 @@ export default class App extends Component {
             currentPage: 0,
             searchText: '',
             dataSource: ds.cloneWithRows([
-                '商品1',
-                '商品2',
-                '商品3',
-                '商品4',
-                '商品5',
-                '商品6',
-                '商品7',
-                '商品8',
-                '商品9',
-                '商品10',
+                {image: require('./images/pig.png'),title:'商品1',subTitle:'描述1'},
+                {image: require('./images/pig.png'),title:'商品2',subTitle:'描述2'},
+                {image: require('./images/pig.png'),title:'商品3',subTitle:'描述3'},
+                {image: require('./images/pig.png'),title:'商品4',subTitle:'描述4'},
+                {image: require('./images/pig.png'),title:'商品5',subTitle:'描述5'},
+                {image: require('./images/pig.png'),title:'商品6',subTitle:'描述6'},
+                {image: require('./images/pig.png'),title:'商品7',subTitle:'描述7'},
+                {image: require('./images/pig.png'),title:'商品8',subTitle:'描述8'},
+                {image: require('./images/pig.png'),title:'商品9',subTitle:'描述9'},
             ]),
             advertisements: [
                 {title:'广告1',backgroundColor:'gray',url:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507226069759&di=851adcf8a30dfe9e746776d11efd554b&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F14%2F87%2F22%2F40858PIC4AX_1024.jpg'},
@@ -93,7 +92,7 @@ export default class App extends Component {
 
                 </View>
                 <View style={styles.products}>
-                    <ListView dataSource={this.state.dataSource} renderRow={this._renderRow} />
+                    <ListView dataSource={this.state.dataSource} renderRow={this._renderRow} renderSeparator={this._renderSeperator}/>
                 </View>
 
             </View>
@@ -135,9 +134,19 @@ export default class App extends Component {
         return (
             <TouchableHighlight onPress={this.listViewClick}>
                 <View style={styles.row}>
-                    <Text>{rowData}</Text>
+                    <Image source={rowData.image} style={styles.productImage}/>
+                    <View style={styles.productText}>
+                        <Text style={styles.productTitle}>{rowData.title}</Text>
+                        <Text style={styles.productSubTitle}>{rowData.subTitle}</Text>
+                    </View>
                 </View>
             </TouchableHighlight>
+        );
+    }
+
+    _renderSeperator = () => {
+        return (
+            <View key={'1'} style={styles.divider}></View>
         );
     }
 
@@ -207,9 +216,37 @@ const styles = StyleSheet.create({
     products: {
         flex: 1,
     },
+    productImage: {
+        marginLeft: 10,
+        width: 40,
+        height: 40,
+        alignSelf:'center'
+    },
     row: {
         height: 60,
-        justifyContent:'center',
-        alignItems:'center'
+        flexDirection:'row',
+        // alignItems:'center'
+    },
+    productText: {
+        flex:1,
+        marginTop:10,
+        marginBottom:10,
+    },
+    productTitle: {
+        flex:3,
+        fontSize:16
+    },
+    productSubTitle: {
+        flex:2,
+        fontSize:14,
+        color:'gray'
+    },
+    divider: {
+        height:1,
+        width:Dimensions.get('window').width-5,
+        marginLeft:5,
+        backgroundColor:'lightgray'
     }
+
+
 });
