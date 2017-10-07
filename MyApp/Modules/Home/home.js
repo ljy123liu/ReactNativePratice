@@ -228,6 +228,7 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:'white'
     },
     searchBar: {
         //iOS显示区域从屏幕顶部开始，Android顶部从状态栏下方开始

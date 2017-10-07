@@ -9,12 +9,14 @@ import { StackNavigator,TabBarBottom, TabNavigator } from 'react-navigation';
 import Home from './Modules/Home/home';
 import Detail from './Modules/Home/detail';
 import User from './Modules/User/user';
+import More from './Modules/Bridge/more';
 // import Home from './home';
 
 // 通过TabNavigator做路由映射
 const MainScreentNavigator=TabNavigator({
     HomeVC:{screen:Home},
     UserVC:{screen:User},
+    MoreVC:{screen:More}
 }, {
     tabBarPosition: 'bottom',
     animationEnabled: true,
