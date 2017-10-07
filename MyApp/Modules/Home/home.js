@@ -31,6 +31,10 @@ const circleMargin = 5;
 
 export default class Home extends Component {
 
+    static navigationOptions = ({ navigation }) => ({
+        title: '首页',
+    });
+
     //生命周期 constructor -> componentWillMount -> render -> componentDidMount -> componentWillUnmount
     //构造函数
     constructor(props) {
@@ -119,7 +123,7 @@ export default class Home extends Component {
     }
 
     handleNavigation = () => {
-        this.props.navigation.navigate("Screen2");
+        this.props.navigation.navigate("Screen2", { user: 'Lucy' });
     };
 
     _startTimer() {

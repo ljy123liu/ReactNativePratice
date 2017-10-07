@@ -14,17 +14,16 @@ export default StackNavigator(
     {
         Screen1: {
             screen: Home,
-            navigationOptions: {
-                headerTitle: "首页"
-            }
         },
         Screen2: {
             screen: Detail,
-            navigationOptions: {
-                headerTitle: "详情"
-            }
         },
     },
+    {
+        // mode: 'modal',
+
+    }
+
 
     // {
     //     cardStyle: { paddingTop: StatusBar.currentHeight } // to bring the navigation bar hiding from the staus bar
