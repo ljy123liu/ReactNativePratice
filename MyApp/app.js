@@ -6,7 +6,9 @@
 
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import Home from './home';
+import Home from './Modules/Home/home';
+import Detail from './Modules/Home/detail';
+// import Home from './home';
 
 export default StackNavigator(
     {
@@ -16,7 +18,14 @@ export default StackNavigator(
                 headerTitle: "首页"
             }
         },
+        Screen2: {
+            screen: Detail,
+            navigationOptions: {
+                headerTitle: "详情"
+            }
+        },
     },
+
     // {
     //     cardStyle: { paddingTop: StatusBar.currentHeight } // to bring the navigation bar hiding from the staus bar
     // }
