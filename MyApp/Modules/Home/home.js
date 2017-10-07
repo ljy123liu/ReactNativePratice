@@ -33,6 +33,13 @@ export default class Home extends Component {
 
     static navigationOptions = ({ navigation }) => ({
         title: '首页',
+        tabBarLabel: '首页',
+        tabBarIcon: ({ tintColor }) => (
+            <Image
+                source={require('../../images/tabbar/home.png')}
+                style={[{height:30,width:30}, {tintColor: tintColor}]}
+            />
+        ),
     });
 
     //生命周期 constructor -> componentWillMount -> render -> componentDidMount -> componentWillUnmount
@@ -123,7 +130,7 @@ export default class Home extends Component {
     }
 
     handleNavigation = () => {
-        this.props.navigation.navigate("Screen2", { user: 'Lucy',callback: (data)=>{
+        this.props.navigation.navigate("DetailVC", { user: 'Lucy',callback: (data)=>{
             console.log(data); // 打印值为：'回调参数'
         } });
     };
