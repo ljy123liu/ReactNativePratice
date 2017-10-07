@@ -123,7 +123,9 @@ export default class Home extends Component {
     }
 
     handleNavigation = () => {
-        this.props.navigation.navigate("Screen2", { user: 'Lucy' });
+        this.props.navigation.navigate("Screen2", { user: 'Lucy',callback: (data)=>{
+            console.log(data); // 打印值为：'回调参数'
+        } });
     };
 
     _startTimer() {

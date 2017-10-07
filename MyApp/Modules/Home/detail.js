@@ -5,7 +5,6 @@ export default class Detail extends React.Component {
 
     static navigationOptions = ({ navigation }) => ({
         title: `Chat with ${navigation.state.params.user}`,
-        // headerMode:'none'
     });
 
     render() {
@@ -22,5 +21,6 @@ export default class Detail extends React.Component {
 
     back= () => {
         this.props.navigation.goBack()
+        this.props.navigation.state.params.callback('回调参数');
     }
 }
