@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View,Button, Image } from "react-native";
 import Platform from './Platform'
+import Communication from './Communication'
 
 const tabBarIconUrl = '../../images/pig.png';
 export default class More extends React.Component {
@@ -20,7 +21,8 @@ export default class More extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Text>{Platform.systemName}</Text>
+                <Text style={styles.text}>{Platform.systemName}</Text>
+                <Communication></Communication>
             </View>
         );
     }
@@ -30,5 +32,9 @@ export default class More extends React.Component {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
+    },
+    text: {
+        alignSelf:'center'
     }
+
 })

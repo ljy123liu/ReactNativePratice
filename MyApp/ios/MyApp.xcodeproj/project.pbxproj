@@ -34,6 +34,8 @@
 		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DA183BB1F8934140060E8B5 /* Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA183BA1F8934140060E8B5 /* Platform.m */; };
+		2DA183D71F89C7EC0060E8B5 /* Communication.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA183D61F89C7EC0060E8B5 /* Communication.m */; };
+		2DA183DA1F89C9B40060E8B5 /* CommunicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA183D91F89C9B40060E8B5 /* CommunicationViewController.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* MyAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MyAppTests.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -255,6 +257,10 @@
 		2D02E4901E0B4A5D006451C7 /* MyApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MyApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DA183B91F8934140060E8B5 /* Platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		2DA183BA1F8934140060E8B5 /* Platform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Platform.m; sourceTree = "<group>"; };
+		2DA183D51F89C7EC0060E8B5 /* Communication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Communication.h; sourceTree = "<group>"; };
+		2DA183D61F89C7EC0060E8B5 /* Communication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Communication.m; sourceTree = "<group>"; };
+		2DA183D81F89C9B40060E8B5 /* CommunicationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunicationViewController.h; sourceTree = "<group>"; };
+		2DA183D91F89C9B40060E8B5 /* CommunicationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunicationViewController.m; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -397,6 +403,10 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				2DA183B91F8934140060E8B5 /* Platform.h */,
 				2DA183BA1F8934140060E8B5 /* Platform.m */,
+				2DA183D51F89C7EC0060E8B5 /* Communication.h */,
+				2DA183D61F89C7EC0060E8B5 /* Communication.m */,
+				2DA183D81F89C9B40060E8B5 /* CommunicationViewController.h */,
+				2DA183D91F89C9B40060E8B5 /* CommunicationViewController.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -910,7 +920,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DA183D71F89C7EC0060E8B5 /* Communication.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				2DA183DA1F89C9B40060E8B5 /* CommunicationViewController.m in Sources */,
 				2DA183BB1F8934140060E8B5 /* Platform.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
